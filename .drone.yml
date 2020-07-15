@@ -3,6 +3,9 @@ clone:
   git:
     image: quay.io/packet/drone-git
     tags: true
+    environment:
+      GIT_COMMITTER_NAME: drone
+      GIT_COMMITTER_EMAIL: drone@drone
 
 pipeline:
   build_osie_test_env_image:
@@ -145,6 +148,7 @@ pipeline:
     privileged: true
     commands:
       - OSES=ubuntu_16_04 make V=1 T=1 test-x86_64
+
 
 #  slack:
 #    image: plugins/slack
