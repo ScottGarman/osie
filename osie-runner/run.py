@@ -119,7 +119,7 @@ while True:
     log.info("about to monitor")
     try:
         resp = watch.next()
-    except grpc.RpcError as e:
+    except (grpc.RpcError, grpc._channel._Rendezvous) as e:
         log.exception("grpc error")
         log.info("hegel went away, attempting to reconnect")
         while True:
